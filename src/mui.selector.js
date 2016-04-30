@@ -41,9 +41,6 @@
         return matched;
     };
     $.each({
-        eq: function(n){
-            return $(this[n]);
-        },
         siblings:function(elem){
             return siblings((this[0].parentNode||{}).firstChild , elem);
         },
@@ -60,17 +57,26 @@
         prev: function( elem ) {
             return sibling( elem, "previousSibling" );
         },
-        nextAll: function(){
-
+        nextAll: function( elem ){
+            return dir( elem, "nextSibling" );
         },
-        prevAll: function(){
-
+        prevAll: function( elem ){
+            return dir( elem, "previousSibling" );
+        },
+        nextUntil: function( elem, i, until ) {
+            return dir( elem, "nextSibling", until );
+        },
+        prevUntil: function( elem, i, until ) {
+            return dir( elem, "previousSibling", until );
         }
     }, function(name, fn){
-        $.fn[ name ] = function(selector){
+        $.fn[ name ] = function(until, selector){
+            if ( name.slice( -5 ) !== "Until" ) {
+                selector = until;
+            }
             var ret = fn.call(this, this[0]);
-                ret = $(ret).filter(selector);
-                ret = $.unique(ret);
+                $.type(ret) === "array" ? 
+                    ((ret = $(ret).filter(selector)) && (ret = $.unique(ret))) : ret = $( ret );
             return $.extend($([]), ret, {selector: selector});
         }
     });
@@ -79,14 +85,17 @@
         size: function(){
             return this.length;
         },
+        eq: function(n){
+            return $(this[n]);
+        },
         get: function( num ) {
-        return num != null ?
+            return num != null ?
 
-            // Return just the one element from the set
-            ( num < 0 ? this[ num + this.length ] : this[ num ] ) :
+                // Return just the one element from the set
+                ( num < 0 ? this[ num + this.length ] : this[ num ] ) :
 
-            // Return all the elements in a clean array
-            $.slice.call( this );
+                // Return all the elements in a clean array
+                $.slice.call( this );
         },
         filter: function(selector){
             return $.filter(this[0], selector)
