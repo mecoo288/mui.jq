@@ -28,9 +28,6 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "npm install && grunt",
-    "start": "grunt watch",
-    "test": "grunt && grunt test",
-    "precommit": "grunt precommit_lint"
+    
   }
 }
