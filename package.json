@@ -1,0 +1,36 @@
+{
+  "name": "muiJq",
+  "title": "muiJq",
+  "description": "JavaScript library for DOM operations",
+  "version": "1.0.0",
+  "main": "build/mui.pkg.js",
+  "homepage": "https://github.com/mecoo288",
+  "author": {
+    "name": "mecoo",
+    "url": "https://github.com/mecoo288"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mecoo288/mui.jq"
+  },
+  "keywords": [
+    "jquery",
+    "javascript",
+    "mui"
+  ],
+  "bugs": {
+    "url": "https://github.com/mecoo288/mui.jq/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "fis3": "^3.3.29",
+    "fis3-postpackager-loader": "^1.3.19"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "npm install && grunt",
+    "start": "grunt watch",
+    "test": "grunt && grunt test",
+    "precommit": "grunt precommit_lint"
+  }
+}
