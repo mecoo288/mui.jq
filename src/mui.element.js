@@ -15,11 +15,9 @@
         classlist = classlist.split(/\s+/g);
         $.each(classlist, function(key, _class){
             $.each(self, function(key, doms){
-                if(operatType !== "has"){
-                    self[key].classList[operatType](_class);
-                }else{
-                    !self[key].classList.contains(_class) && noNum++;
-                }
+                    operatType !== "has"?
+                        self[key].classList[operatType](_class):
+                        !self[key].classList.contains(_class) && noNum++;
             });
         });
         return operatType === "has" ? noNum === 0 : self;
@@ -40,11 +38,9 @@
         }
         $.each(this, function(key, obj){
             $.each(data, function(key, val){
-                if($.type(data) === "object"){
-                    obj.setAttribute(key, val);
-                }else{
+                $.type(data) === "object" ? 
+                    obj.setAttribute(key, val) :
                     obj.removeAttribute(val);
-                }
             });
         });
         return this;
