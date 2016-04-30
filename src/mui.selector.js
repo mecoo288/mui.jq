@@ -89,42 +89,7 @@
             $.slice.call( this );
         },
         filter: function(selector){
-            var 
-                idRE = /^#([\w-]+)$/,
-                classRE = /^\.([\w-]+)$/,
-                tagRE = /^[\w-]+$/,
-                deal = false,
-                elements = this[0],
-                ret = [];
-            if($.type(selector) === "function"){
-                $.type(elements) === "object" && (ret = {});
-                $.each(this[0], function(key, val){
-                    var r = selector(key, val);
-                    $.type(r) === "boolean" && (r && (r = val));
-                    $.type(r) === "number" ? 
-                        ($.type(key) === "number" ? ret.push(r) : ret[key] = r)
-                        :
-                        (r && ( $.type(key) === "number" ? ret.push(r):ret[key] = val))
-                });
-                return ret;
-            }
-            if( $.type(selector) === "string"){
-                $.each(this[0], function(k, elem){
-                    $.each(selector.split(/\s*,\s*/), function(k, sel){
-                        if(idRE.test(sel)){
-                            $(elem).attr("id") === $.slice.call(sel, 1).join("") ? ret.push(elem):null
-                        }
-                        if(classRE.test(sel)){
-                            $(elem).hasClass($.slice.call(sel, 1).join(""))? ret.push(elem):null
-                        }
-                        if(tagRE.test(sel)){
-                            $(elem)[0].tagName.toLowerCase() === sel ? ret.push(elem):null;
-                        }
-                    }) 
-                });
-                return ret;
-            }
-            return this[0];
+            return $.filter(this[0], selector)
         }
     })
 })(mui, window);
