@@ -3,7 +3,7 @@
   "title": "muiJq",
   "description": "JavaScript library for DOM operations",
   "version": "1.0.0",
-  "main": "build/mui.pkg.js",
+  "main": "build/mui.jq.js",
   "homepage": "https://github.com/mecoo288",
   "author": {
     "name": "mecoo",
