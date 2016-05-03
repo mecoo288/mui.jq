@@ -1,0 +1,99 @@
+/*!/less/mui.jq.less*/
+.ktoast-container {
+  position: fixed;
+  text-align: center;
+  z-index: 9999;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+}
+.ktoast-container.mui-active {
+  opacity: 1;
+}
+.ktoast-container.bottom {
+  top: auto;
+  bottom: 50px;
+}
+.ktoast-container.middle {
+  top: 50%;
+  bottom: auto;
+  margin-top: -30px;
+}
+.ktoast-container .top {
+  top: 50px;
+  bottom: auto;
+}
+.ktoast-message {
+  display: inline-block;
+  min-width: 50%;
+  font-size: 14px;
+  margin: 5px auto;
+  padding: 5px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+.kloading-pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.kloading-message {
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  top: 30%;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-left: -50px;
+  width: 100px;
+  height: 80px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.kloading-spinner {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  -webkit-animation: dot3 1s linear infinite alternate;
+  animation: dot3 1s linear infinite alternate;
+  top: 50%;
+  left: 50%;
+  margin-top: -4px;
+  margin-left: -4px;
+  position: absolute;
+}
+/*加载中icon*/
+@-webkit-keyframes dot3 {
+  0% {
+    background-color: #ffffff;
+    box-shadow: -16px 0px 0px 0px rgba(255, 255, 255, 0.2), 16px 0px 0px 0px rgba(255, 255, 255, 0.2);
+  }
+  25% {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: -16px 0px 0px 0px #ffffff, 16px 0px 0px 0px rgba(255, 255, 255, 0.2);
+  }
+  75% {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: -16px 0px 0px 0px rgba(255, 255, 255, 0.2), 16px 0px 0px 0px #ffffff;
+  }
+}
+@keyframes dot3 {
+  0% {
+    background-color: #ffffff;
+    box-shadow: -16px 0px 0px 0px rgba(255, 255, 255, 0.2), 16px 0px 0px 0px rgba(255, 255, 255, 0.2);
+  }
+  25% {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: -16px 0px 0px 0px #ffffff, 16px 0px 0px 0px rgba(255, 255, 255, 0.2);
+  }
+  75% {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: -16px 0px 0px 0px rgba(255, 255, 255, 0.2), 16px 0px 0px 0px #ffffff;
+  }
+}
