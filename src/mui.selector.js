@@ -26,15 +26,13 @@
 
         return matched;
     };
-    dir = function( elem, dir, until ) {
-        var matched = [],
-            truncate = until !== undefined;
-
+    dir = function( elem, dir ) {
+        var matched = [];
+        if(!elem){
+            return matched;
+        };
         while ( ( elem = elem[ dir ] ) && elem.nodeType !== 9 ) {
             if ( elem.nodeType === 1 ) {
-                if ( truncate && jQuery( elem ).is( until ) ) {
-                    break;
-                }
                 matched.push( elem );
             }
         }
@@ -62,12 +60,6 @@
         },
         prevAll: function( elem ){
             return dir( elem, "previousSibling" );
-        },
-        nextUntil: function( elem, i, until ) {
-            return dir( elem, "nextSibling", until );
-        },
-        prevUntil: function( elem, i, until ) {
-            return dir( elem, "previousSibling", until );
         }
     }, function(name, fn){
         $.fn[ name ] = function(until, selector){
@@ -77,7 +69,7 @@
             var ret = fn.call(this, this[0]);
                 $.type(ret) === "array" ? 
                     ((ret = $(ret).filter(selector)) && (ret = $.unique(ret))) : ret = $( ret );
-            return $.extend($([]), ret, {selector: selector});
+            return ret.length > 0 ? $.extend($(""), ret, {selector: selector}) : $("");
         }
     });
 

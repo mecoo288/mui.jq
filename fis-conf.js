@@ -1,11 +1,13 @@
-fis.match('*.js', {
-  packTo: 'mui.jq.js'
-});
-fis.match('mui.js', {
+fis.match('mui.min.js', {
   packOrder:-100
 })
-
-// fis.match(/mui\..*\.js/,{
-//   optimizer: fis.plugin('uglify-js'),
-//   packTo:'mui.pkg.min.js'
-// });
+fis.match('*.js', {
+  packTo: 'mui.jq.js',
+  optimizer: fis.plugin('uglify-js'),
+  deploy: [
+    fis.plugin('skip-packed'),
+    fis.plugin('local-deliver', {
+      to: 'build'
+    })
+  ]
+});

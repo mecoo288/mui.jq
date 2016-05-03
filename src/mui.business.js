@@ -68,12 +68,16 @@
                 type:'post',
                 timeout:10000,
                 success: function(){
-                    pop.remove();
-                    parmas.success.apply([], arguments)
+                    var grgs = arguments;
+                    pop.remove(function(){
+                        parmas.success.apply([], grgs)
+                    });
                 },
                 error: function(){
-                    pop.remove();
-                    parmas.error.apply([], arguments)
+                    var grgs = arguments;
+                    pop.remove(function(){
+                        parmas.error.apply([], grgs)
+                    });
                 }
             })
         }

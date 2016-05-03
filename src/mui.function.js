@@ -44,7 +44,31 @@
                 ret.indexOf(elem) === -1 ? ret.push(elem) : null
             });
             return ret;
+        },
+        timer:function(N,callback, timeFn){
+            (function(N){
+                var args = arguments;
+                if(N === 0){
+                    callback();
+                    return;
+                }
+                    timeFn(N)
+                setTimeout(function(){
+                    args.callee(--N);
+                }, 1000);
+            })(N);
         }
         
     })
 })(mui, window);
+(function($, window){
+    $.extend($.fn, {
+        submit: function(){
+            if(this.size()<1){
+                return;
+            }
+
+            this[0].tagName.toLowerCase() === "form" && this[0].submit();
+        }
+    })
+})(mui, window)
