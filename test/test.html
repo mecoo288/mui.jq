@@ -5,28 +5,59 @@
 	<title>Document</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	<link rel="stylesheet" href="../build/css/mui.jq.css">
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		ul,li{
+			list-style:none;
+		}
+		ul{
+			border:1px solid #ccc;
+			background-color:#e7e7e7;
+			margin:5%;
+		}
+		li{
+			padding:5px 10px;
+		}
+		textarea{
+			display:block;
+			margin:5%;
+			width:90%;
+		}
+		button{
+			padding:5px 10px;
+			font-size:14px;
+			margin-left: 5%;
+		}
+	</style>
 </head>
 <body>
 	<ul>
-		<li id="li1">li111</li>
-		<li id="li2" class="aa">li222</li>
-		<li id="li3">li333</li>
-		<li id="li4" class="aa">li444</li>
-		<li id="li5">li555</li>
+		<li id="li1">id:#li1</li>
+		<li id="li2" class="aa">id:#li2, class:.aa</li>
+		<li id="li3" style="background-color:#f00">id:#li3</li>
+		<li id="li4" class="aa">id:#li4, class:.aa</li>
+		<li id="li5">id:#li5</li>
 	</ul>
 	<ul>
-		<li id="li1">li111</li>
-		<li id="li2" class="aa">li222</li>
-		<li id="li3">li333</li>
-		<li id="li4" class="aa">li444</li>
-		<li id="li5">li555</li>
+		<li id="li21">id:#li21</li>
+		<li id="li22" class="bb">id:#li2, class:.bb</li>
 	</ul>
-
+	<div>
+		<textarea id="code" rows="10" placeholder="请输入可执行代码"></textarea>
+		<button id="b1">执行</button>
+	</div>
+	
 	<script src="../build/lib/mui.jq.js"></script>
 	<script>
 		mui(function($){
-			var a = $("ul").children("#li3, #li4, .aa");
-			console.log(a);
+			$("body").on("tap", "#b1", function(){
+				var text = $("#code").val();
+				if(!text){ alert($("#code").attr("placeholder"))}
+				eval(text);
+			})
 		})
 	</script>
 </body>
