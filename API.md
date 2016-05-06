@@ -5,7 +5,7 @@ mui.jq API
  
 目前支持
 ---
-### DOM选择器 ####
+### DOM选择器 ###
 - siblings
 - parent
 - children
@@ -15,7 +15,7 @@ mui.jq API
 - prev
 - nextAll
 - prevAll
-### 属性操作方法 ####
+### 属性操作方法 ###
 - addClass
 - removeClass
 - hasClass
@@ -25,20 +25,20 @@ mui.jq API
 - css
 - attr
 - removeAttr
-### 其他 ####
+### 其他 ###
 - size
 - filter
 - submit
-### 常用函数 ####
+### 常用函数 ###
 - noop
 - filter
 - unique
 - timer
-### mui扩展延伸 ####
+### mui扩展延伸 ###
 - ktoast 
 - loadPop
 - kajax
-### 实例及用法 ####
+### 实例及用法 ###
 注：里面链式操作借鉴自jQuery，使用方法可以 参看[jquery API](http://jquery.cuishifeng.cn/)
 
 #### ktoast用法及实例 ####
