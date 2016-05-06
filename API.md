@@ -3,8 +3,8 @@ mui.jq API
 
  该库产出文件为``` mui.jq.js``` (mui + 简化的jquery)
 
-DOM选择器
-------
+### DOM选择器 ###
+
 - siblings
 - parent
 - children
@@ -14,8 +14,9 @@ DOM选择器
 - prev
 - nextAll
 - prevAll
-属性操作方法
-------------
+
+### 属性操作方法 ###
+
 - addClass
 - removeClass
 - hasClass
@@ -25,11 +26,15 @@ DOM选择器
 - css
 - attr
 - removeAttr
+
 ### 其他 ###
+
 - size
 - filter
 - submit
+
 ### 常用函数 ###
+
 - noop
 - filter
 - unique
