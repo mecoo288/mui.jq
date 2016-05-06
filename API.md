@@ -2,10 +2,9 @@ mui.jq API
 ==========
 
  该库产出文件为``` mui.jq.js``` (mui + 简化的jquery)
- 
-目前支持
----
-### DOM选择器 ###
+
+DOM选择器
+------
 - siblings
 - parent
 - children
@@ -15,7 +14,8 @@ mui.jq API
 - prev
 - nextAll
 - prevAll
-### 属性操作方法 ###
+属性操作方法
+------------
 - addClass
 - removeClass
 - hasClass
