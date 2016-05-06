@@ -52,7 +52,7 @@ mui.jq API
 
 #### ktoast用法及实例 ####
 
-_由于原生的 toast方法及 ajax 方法过于简陋 所以考虑到交互体验做了优化_
+注：由于原生的 toast方法及 ajax 方法过于简陋 所以考虑到交互体验做了优化
 
 - 完整写法
 `mui.ktoast({msg:"test", "timeOut":2000, align:"middle"}, function(){  });`
