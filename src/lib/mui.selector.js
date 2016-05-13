@@ -80,6 +80,12 @@
         eq: function(n){
             return $(this[n]);
         },
+        first: function(){
+            return this.eq(0);
+        },
+        last: function(){
+            return this.eq(this.size() -1);
+        },
         get: function( num ) {
             return num != null ?
 
