@@ -9,6 +9,8 @@ mui.jq API
 - parent
 - children
 - eq
+- first
+- last
 - get
 - next
 - prev
