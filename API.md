@@ -50,6 +50,10 @@ mui.jq API
 
 注：里面链式操作借鉴自jQuery，使用方法可以 参看[jquery API](http://jquery.cuishifeng.cn/)
 
+#### timer用法及实例 ####
+
+`mui.timer(times, endFunction, timeFunction)`
+
 #### ktoast用法及实例 ####
 
 注：由于原生的 toast方法及 ajax 方法过于简陋 所以考虑到交互体验做了优化

@@ -45,11 +45,13 @@
             });
             return ret;
         },
-        timer:function(N,callback, timeFn){
+        timer:function(N,endFn, timeFn){
+            endFn = endFn || $.noop();
+            timeFn = timeFn || $.noop();
             (function(N){
                 var args = arguments;
                 if(N === 0){
-                    callback();
+                    endFn();
                     return;
                 }
                     timeFn(N)
