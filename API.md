@@ -9,6 +9,8 @@ mui.jq API
 - parent
 - children
 - eq
+- first
+- last
 - get
 - next
 - prev
@@ -69,7 +71,7 @@ mui.jq API
 pop.create();//呼出pop
 pop.remove();//移除pop`
  
-#### kajax用法急实例 ####
+#### kajax用法及实例 ####
 
 增加了服务器请求的中间过渡，优化体验
 
