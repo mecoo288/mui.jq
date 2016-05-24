@@ -23,7 +23,7 @@
         return operatType === "has" ? noNum === 0 : self;
     };
     operatDom = function(val, operatType){
-        if(!val && this[0]){
+        if(!val && $.type(val) !== "string" && this[0]){
             return this[0][operatType];
         }
         $.each(this, function(key, obj){
@@ -101,6 +101,9 @@
                 return this;
             }
             return operatAttr.call( this, data);
+        },
+        prop: function(key, val){
+            return this.attr(key, val);
         },
         removeAttr: function(key){
             if( !key || !($.type(key) === "array" || $.type(key) === "string")){
