@@ -105,6 +105,20 @@
         prop: function(key, val){
             return this.attr(key, val);
         },
+        width: function(val){
+            if(val){
+                this.css("width", val);
+                return this;
+            }
+            return this[0].offsetWidth
+        },
+        height: function(val){
+            if(val){
+                this.css("height", val);
+                return this;
+            }
+            return this[0].offsetHeight
+        },
         removeAttr: function(key){
             if( !key || !($.type(key) === "array" || $.type(key) === "string")){
                 return this;
