@@ -73,4 +73,13 @@
             this[0].tagName.toLowerCase() === "form" && this[0].submit();
         }
     })
-})(mui, window)
+})(mui, window);
+(function($, window){
+    $("body").on("tap", "[data-url-open]", function(e){
+        e.stopPropagation();
+        var link = $(this).attr("href");
+        if(!!link){
+            window.location.href = link;
+        }
+    });
+})(mui, window);
