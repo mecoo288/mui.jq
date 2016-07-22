@@ -6,58 +6,44 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	<link rel="stylesheet" href="../build/css/mui.jq.css">
 	<style>
-		*{
-			padding:0;
-			margin:0;
-		}
-		ul,li{
-			list-style:none;
-		}
-		ul{
-			border:1px solid #ccc;
-			background-color:#e7e7e7;
-			margin:5%;
-		}
-		li{
-			padding:5px 10px;
-		}
-		textarea{
-			display:block;
-			margin:5%;
-			width:90%;
-		}
-		button{
-			padding:5px 10px;
-			font-size:14px;
-			margin-left: 5%;
+		img{
+			max-width: 100%;
 		}
 	</style>
 </head>
 <body>
-	<ul>
-		<li id="li1">id:#li1</li>
-		<li id="li2" class="aa">id:#li2, class:.aa</li>
-		<li id="li3" style="background-color:#f00">id:#li3</li>
-		<li id="li4" class="aa">id:#li4, class:.aa</li>
-		<li id="li5">id:#li5</li>
-	</ul>
-	<ul>
-		<li id="li21">id:#li21</li>
-		<li id="li22" class="bb">id:#li2, class:.bb</li>
-	</ul>
-	<div>
-		<textarea id="code" rows="10" placeholder="请输入可执行代码"></textarea>
-		<button id="b1">执行</button>
-	</div>
+	<img src="http://img1.imgtn.bdimg.com/it/u=992169710,3927230349&fm=21&gp=0.jpg" alt="">
+	<img src="http://cdn.duitang.com/uploads/item/201112/04/20111204012148_wkT88.jpg" alt="">
+	<img src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF.jpg" alt="">
+	<img src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF11.jpg" alt="">
+	<img src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF1133.jpg" alt="">
 	
 	<script src="../build/lib/mui.jq.js"></script>
 	<script>
 		mui(function($){
-			$("body").on("tap", "#b1", function(){
-				var text = $("#code").val();
-				if(!text){ alert($("#code").attr("placeholder"))}
-				eval(text);
-			})
+			$.kfetch({
+				object: $("img"),
+				success: function(obj){
+					console.log(obj);
+				},
+				error: function(res){
+					console.log(res, 111)
+				},
+				complete: function(data){
+					console.log(data)
+				}
+			});
+			// $("img").kfetch({
+			// 	success: function(obj){
+			// 		console.log(obj);
+			// 	},
+			// 	error: function(res){
+			// 		console.log(res, 111)
+			// 	},
+			// 	complete: function(data){
+			// 		console.log(data)
+			// 	}
+			// })
 		})
 	</script>
 </body>

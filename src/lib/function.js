@@ -69,7 +69,6 @@
             if(this.size()<1){
                 return;
             }
-
             this[0].tagName.toLowerCase() === "form" && this[0].submit();
         }
     })
