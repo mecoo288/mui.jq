@@ -47,6 +47,7 @@ mui.jq API
 - ktoast 
 - loadPop
 - kajax
+- kfetch
 
 ### 实例及用法 ###
 
@@ -80,4 +81,20 @@ url:url,
 data:data,
 success:function(){},
 error:function(){}
+})`
+
+#### kfetch用法及实例 ####
+
+侦听图片加载状态
+`mui.kfetch({
+	object: mui("img"),
+	success: function(res){},
+	error: function(res){},
+	complete: function(res){}
+})`
+或
+`$("img").kfetch({
+	success: function(res){},
+	error: function(res){},
+	complete: function(res){}
 })`
