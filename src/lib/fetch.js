@@ -16,7 +16,29 @@
         }
     */
     var toarr = function(arr){
-        return $.type(arr) == "string" ? $(arr) :  arr;
+        var _arr = $.type(arr) == "string" ? $(arr) :  arr,
+            res = [],
+            img;
+        img = function(val){
+            var type = val.tagName.toLowerCase();
+            if(type == "img"){
+                return val
+            }
+            val = $(val).css("backgroundImage");
+            if(!!val){
+                val = val.split("\"")[1];
+                var img = document.createElement("img");
+                    img.src = val;
+                return img
+            }
+            return null;
+        };
+        $.each(_arr, function(ind, val){
+            if(img(val)){
+                res.push(img(val))
+            }
+        });
+        return res;
     }
     $.extend({
         kfetch: function(options){

@@ -12,25 +12,27 @@
 	</style>
 </head>
 <body>
-	<img src="http://img1.imgtn.bdimg.com/it/u=992169710,3927230349&fm=21&gp=0.jpg" alt="">
-	<img src="http://cdn.duitang.com/uploads/item/201112/04/20111204012148_wkT88.jpg" alt="">
-	<img src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF.jpg" alt="">
-	<img src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF11.jpg" alt="">
-	<img src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF1133.jpg" alt="">
+	<img class="img" src="http://img1.imgtn.bdimg.com/it/u=992169710,3927230349&fm=21&gp=0.jpg" alt="">
+	<img class="img"  src="http://cdn.duitang.com/uploads/item/201112/04/20111204012148_wkT88.jpg" alt="">
+	<img class="img"  src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF.jpg" alt="">
+	<img class="img"  src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF11.jpg" alt="">
+	<img class="img" src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF1133.jpg" alt="">
+	<div class="img" style="background-image: url(http://imgst-dl.meilishuo.net/pic/_o/84/a4/a30be77c4ca62cd87156da202faf_1440_900.jpg);height: 200px; background-position: center;"></div>
+	<div class="img" ></div>
 	
 	<script src="../build/lib/mui.jq.js"></script>
 	<script>
 		mui(function($){
 			$.kfetch({
-				object: $("img"),
+				object: $(".img"),
 				success: function(obj){
-					console.log(obj);
+					// console.log(obj);
 				},
 				error: function(res){
-					console.log(res, 111)
+					// console.log(res, 111)
 				},
 				complete: function(data){
-					console.log(data)
+					// console.log(data)
 				}
 			});
 			// $("img").kfetch({
