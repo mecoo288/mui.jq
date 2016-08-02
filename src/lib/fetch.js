@@ -15,42 +15,78 @@
             error: function(obj){} //  单个获取失败
         }
     */
-    var toarr = function(arr){
-        var _arr = $.type(arr) == "string" ? $(arr) :  arr,
-            res = [],
-            img;
-        img = function(val){
-            var type = val.tagName.toLowerCase();
-            if(type == "img"){
-                return val
-            }
-            val = $(val).css("backgroundImage");
-            if(!!val){
-                val = val.split("\"")[1];
-                var img = document.createElement("img");
-                    img.src = val;
-                return img
-            }
-            return null;
+    // 标准序列化对象
+    // $("img"), img
+    // [$("img"), $("img")], ["img", "img"]
+    var o = function(obj){ //判断对象类型
+            return $.isArray(obj)
+                ? [].concat(obj)
+                    : (
+                        /^([#\.]\w+|\w+)$/.test(obj)
+                            ? [].concat($(obj)) 
+                                : [].concat(obj) 
+                    );
         };
-        $.each(_arr, function(ind, val){
-            if(img(val)){
-                res.push(img(val))
+    var objects = function(data){
+        var res = [];
+        // 先转化为数组
+        $.each(o(data.list), function(ind, obj){
+            var _object = singleObject(obj, data);
+            if(!$.isEmptyObject(_object)){
+              res = res.concat(_object)  
             }
         });
-        return res;
-    }
+        return !$.isEmptyObject(res) && res;
+    };
+    // 单个对象处理
+    var singleObject = function(obj, data){
+        //标准输出模版 obj = img, #img, .img, http://...., $(img)'
+        var res = [];
+        $.each([].concat(o(obj)), function(ind, _obj){
+            var src = ($.type(_obj) == "string" && _obj)
+                        || $(_obj).attr("data-kimage") 
+                        || _obj.src 
+                        || (_obj.style["backgroundImage"]||"").replace(/(url\(['"]?|['"]?\))/g, "") 
+                        || null,
+                _o = null,
+                tempObj = null;
+            if(!src){ return;}
+            if($.type(_obj) == "string"){
+                tempObj = new Image();
+                tempObj.src = src;
+            }
+            _o = {
+                object:  tempObj || _obj,
+                type: $(_obj).attr("data-kimage") ? "kimg" : (
+                            _obj.tagName.toLowerCase() === "img" ? "img" : (
+                                (_obj.style["backgroundImage"]||"").replace(/(url\(['"]?|['"]?\))/g, "") ? "bg" : null
+                            )
+                        ),
+                src: src
+            };
+            data.before.call(_o.object, _o);
+            res.push(_o)
+        });
+        return !$.isEmptyObject(res) && res;
+    };
     $.extend({
         kfetch: function(options){
             var opts = $.extend({
                 object: [],
+                before: $.noop,
                 success: $.noop,
                 error: $.noop,
                 complete: $.noop
             }, options);
-            if(!opts.object){return}
-            arr = toarr(opts.object);
-            var imgNum = arr.length,
+
+            list = objects({
+                list: opts.object, 
+                before: opts.before
+            });
+
+            if( list.length <1 ){return}
+
+            var imgNum = list.length,
                 over = false,
                 finishList = [],
                 failList = [],
@@ -63,14 +99,17 @@
                         })
                     }
                 },40);
-            $.each(arr, function(ind, obj){
-                obj.onload = function(){
+
+            $.each(list, function(ind, obj){
+                var img = document.createElement("img");
+                    img.src = obj.src;
+                img.onload = function(){
                     finishList.push(obj);
-                    opts.success(obj);
+                    opts.success.call(obj.object, obj);
                 };
-                obj.onerror = function(){
+                img.onerror = function(){
                     failList.push(obj);
-                    opts.error(obj);
+                    opts.error.call(obj.object, obj);
                 };
             });
         }

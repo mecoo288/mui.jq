@@ -94,7 +94,8 @@ error:function(){}
 })`
 或
 `$("img").kfetch({
+	before: function(res){},
 	success: function(res){},
 	error: function(res){},
-	complete: function(res){}
+	complete: function(status, faillist){}
 })`
