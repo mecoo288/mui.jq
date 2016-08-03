@@ -7,36 +7,30 @@
      * 功能业务模块
      */
     $.extend({
-        ktoast: function(str, callback){ // 提示框
-            var msg,
-                _align = "middle" 
-                align = _align,
-                timeOut = 0;
-            callback = callback || function(){};
-            if($.isObject(str)){
-                msg = str.msg;
-                align = str.align;
-                timeOut = str.timeOut;
-            }else{
-                msg = str;
-            }
-            timeOut = !!timeOut ? timeOut : 2000;
-            align =  ["top", "middle", "bottom"].indexOf(align) < 0 ? _align : align;
+        ktoast: function(option, cb){ // 提示框
+            var opts = $.extend({
+                msg : "",
+                align: "middle",
+                timeOut: 2000
+            }, $.isObject(option) ? option : {msg: option}),
+                css = ["top", "middle", "bottom"];
+
+            cb = cb || $.noop;
             var toast = document.createElement('div');
             toast.classList.add('ktoast-container');
-            toast.classList.add(align);
-            toast.innerHTML = '<div class="ktoast-message">' + msg + '</div>';
+            toast.classList.add(css.indexOf(opts.align) + 1 ? opts.align : css[1]);
+            toast.innerHTML = '<div class="ktoast-message">' + opts.msg + '</div>';
             document.body.appendChild(toast);
             setTimeout(function() {
                 document.body.removeChild(toast);
-                callback();
-            }, timeOut);
+                cb();
+            }, opts.timeOut);
         },
         loadPop: function(){
             var pop;
             return{
-                create: function(callback){
-                    callback = callback||$.noop;
+                create: function(cb){
+                    cb = cb||$.noop;
                     if(pop){
                         document.body.removeChild(pop); 
                         return;
@@ -45,15 +39,15 @@
                     pop.classList.add('kloading-pop');
                     pop.innerHTML = '<div class="kloading-message"><span class="kloading-spinner"></span></div>';
                     document.body.appendChild(pop);
-                    callback();
+                    cb();
                 },
-                remove:function(callback){
-                    callback = callback||$.noop;
+                remove:function(cb){
+                    cb = cb||$.noop;
                     if(!pop){return;}
                     setTimeout(function(){
                         document.body.removeChild(pop);
                         pop = null;
-                        callback();
+                        cb();
                     }, 1000);
                 }
             };

@@ -32,7 +32,6 @@
     };
     // 单个对象处理
     var singleObject = function(obj, data){
-        //标准输出模版 obj = img, #img, .img, http://...., $(img)'
         var res = [];
         $.each([].concat(o(obj)), function(ind, _obj){
             var src = ($.type(_obj) == "string" && _obj)
