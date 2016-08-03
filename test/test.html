@@ -26,36 +26,36 @@
 	<script src="../build/lib/mui.jq.js"></script>
 	<script>
 		mui(function($){
-			// $.kfetch({
-			// 	object: $(".img"),
-			// 	before: function(res){
-			// 		// console.log(this, res)
-			// 	},
-			// 	success: function(obj){
-			// 		// console.log(obj);
-			// 	},
-			// 	error: function(res){
-			// 		console.log(this, res)
-			// 	},
-			// 	complete: function(data){
-			// 		console.log(data)
-			// 	}
-			// });
-			$.kfetch({
-				object: "div",
-				before: function(o){
-					console.log(this);
+			$(".img").kfetch({
+				// object: $(".img"),
+				before: function(res){
+					console.log(this, res)
 				},
 				success: function(obj){
-					// console.log(1111);
+					// console.log(obj);
 				},
 				error: function(res){
-					// console.log(res, 111)
+					console.log(this, res)
 				},
 				complete: function(data){
-					// console.log(data)
+					console.log(data)
 				}
-			})
+			});
+			// $.kfetch({
+			// 	object: "div",
+			// 	before: function(o){
+			// 		console.log(this);
+			// 	},
+			// 	success: function(obj){
+			// 		// console.log(1111);
+			// 	},
+			// 	error: function(res){
+			// 		// console.log(res, 111)
+			// 	},
+			// 	complete: function(data){
+			// 		// console.log(data)
+			// 	}
+			// })
 		})
 	</script>
 </body>

@@ -2,23 +2,15 @@
     /**
      * Author：k
      * Email: mecoo@vip.qq.com
-     * Date: 2016-7-22
+     * Date: 2016-8-3
      * Version: 1.0
-     * 功能业务模块
-     */
-    /*
-    
-        {
-            object: $("img")
-            success: function(obj){} // 单个获取成功
-            complete: function(res){} // 请求完成
-            error: function(obj){} //  单个获取失败
-        }
     */
-    // 标准序列化对象
-    // $("img"), img
-    // [$("img"), $("img")], ["img", "img"]
-    var o = function(obj){ //判断对象类型
+    /**
+     * [o 对象转化为数组]
+     * @param  {[string|array]} obj [对象为字符串、标签、数组]
+     * @return {[array]}     [返回数组]
+     */
+    var o = function(obj){
             return $.isArray(obj)
                 ? [].concat(obj)
                     : (
