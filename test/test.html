@@ -6,41 +6,60 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	<link rel="stylesheet" href="../build/css/mui.jq.css">
 	<style>
-		img{
-			max-width: 100%;
+		.img{
+			background-size: cover;
+			background-repeat: no-repeat;
+			position: absolute;
+			background-color: #c00;
+			width: 100px;
+			height: 100px;
+			left: 10%;
+			top: 20%;
+		/* 	animation-name: runin;
+			animation-timing-function:  cubic-bezier(0.5,-0.5,0.5,1.5);
+			animation-direction: alternate;
+			animation-duration:   1s;
+			animation-iteration-count: 1;
+			animation-fill-mode: forwards; */
+			/* animation-fill-mode: backwards; */
+			/* animation-fill-mode: both; */
 		}
-		img:before{
-			content:"1111";
+		@keyframes runin{
+			0%{
+				background-color: #0c0 
+			}
+			100%{
+				background-color: #00c 
+			}
 		}
 	</style>
 </head>
 <body>
-	<img class="img" src="http://img1.imgtn.bdimg.com/it/u=992169710,3927230349&fm=21&gp=0.jpg" alt="">
+	<!-- <img class="img" src="http://img1.imgtn.bdimg.com/it/u=992169710,3927230349&fm=21&gp=0.jpg" alt=""> -->
 	<!-- <img class="img"  src="http://cdn.duitang.com/uploads/item/201112/04/20111204012148_wkT88.jpg" alt="">
 	<img class="img"  src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF.jpg" alt="">
 	<img class="img"  src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF11.jpg" alt="">
 	<img class="img" src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF1133.jpg" alt=""> -->
-	<div class="img" style="background-image: url(http://imgst-dl.meilishuo.net/pic/_o/84/a4/a30be77c4ca62cd87156da202faf_1440_900.jpg);height: 200px; background-position: center;"></div>
-	<div class="img"></div>
+	<div class="img" style="background-color:#c00"></div>
 	
 	<script src="../build/lib/mui.jq.js"></script>
 	<script>
 		mui(function($){
-			$(".img").kfetch({
-				// object: $(".img"),
-				before: function(res){
-					console.log(this, res)
-				},
-				success: function(obj){
-					// console.log(obj);
-				},
-				error: function(res){
-					console.log(this, res)
-				},
-				complete: function(data){
-					console.log(data)
-				}
-			});
+			// $(".img").kfetch({
+			// 	// object: $(".img"),
+			// 	before: function(res){
+			// 		console.log(this, res)
+			// 	},
+			// 	success: function(obj){
+			// 		// console.log(obj);
+			// 	},
+			// 	error: function(res){
+			// 		console.log(this, res)
+			// 	},
+			// 	complete: function(data){
+			// 		console.log(data)
+			// 	}
+			// });
 			// $.kfetch({
 			// 	object: "div",
 			// 	before: function(o){

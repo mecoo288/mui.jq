@@ -73,7 +73,7 @@
                 if(!!val){
                     obj[key] = val;
                 }else{
-                    return this[0].style[key]
+                    return document.defaultView.getComputedStyle(this[0])[key]
                 }
             }
             if($.type(key) === "object"){
