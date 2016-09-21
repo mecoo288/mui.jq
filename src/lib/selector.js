@@ -15,7 +15,7 @@
         } while ( cur && cur.nodeType !== 1 );
 
         return cur;
-    }
+    };
     siblings = function( n, elem ) {
         var matched = [];
         for ( ; n; n = n.nextSibling ) {
@@ -85,6 +85,10 @@
         },
         last: function(){
             return this.eq(this.size() -1);
+        },
+        find: function(selector){
+            var ret = this[0].querySelectorAll(selector);
+            return ret.length>0 ? $.extend($(""), ret, {selector: selector}) : $("")
         },
         get: function( num ) {
             return num != null ?
