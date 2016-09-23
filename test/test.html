@@ -40,28 +40,25 @@
 	<img class="img"  src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF.jpg" alt="">
 	<img class="img"  src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF11.jpg" alt="">
 	<img class="img" src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF1133.jpg" alt=""> -->
-	<div class="img" id="img" style="background-color:#c00"></div>
+	<!-- <div class="img" id="img" style="background-color:#c00"></div>
 	<ul>
 		<li>1111</li>
 		<li>2222</li>
 		<li>3333</li>
 		<li class="aa"><b>aaa</b><span id=ccc>cccccc</span></li>
-	</ul>
+	</ul> -->
+	<div id="div">11111 id:div</div>
 	<script src="../build/lib/mui.jq.js"></script>
 	<script>
 		// document.getElementById("img").addEventListener("click", function(){
 		// 	console.log(111)
 		// })
-		document.getElementById("img").addEventListener("mousedown", function(){
-			console.log(222)
-		})
-		// mui(function($){
-		// 	var a = ["a", "b"];
-		// 	a.a = 111;
-		// 	a.b = 222;
-		// 	console.log(a);
-			
+		// document.getElementById("img").addEventListener("mousedown", function(){
+		// 	console.log(222)
 		// })
+		mui(function($){
+			$("#div").append("<hr><div>222222</div><p>4444444</p>")
+		})
 	</script>
 </body>
 </html>

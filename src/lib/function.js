@@ -59,6 +59,17 @@
                     args.callee(--N);
                 }, 1000);
             })(N);
+        },
+        contains: function(){
+            document.documentElement.contains ?
+            function(parent, node) {
+                return parent !== node && parent.contains(node)
+            } :
+            function(parent, node) {
+                while (node && (node = node.parentNode))
+                    if (node === parent) return true
+                        return false
+                }
         }
         
     })
