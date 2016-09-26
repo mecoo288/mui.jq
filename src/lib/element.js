@@ -125,11 +125,20 @@ operatAttr;
                 return this;
             }
             return operatAttr.call( this, $.type(key) === "array" ? key : key.split(/\s+/g));
+        },
+        remove: function(){
+            this[0].remove();
         }
     });
 })(mui, window);
 //[ 'after', 'prepend', 'before', 'append' ]
 (function($, window){
+    function traverseNode(node, fun) {
+        fun(node);
+        for (var i = 0, len = node.childNodes.length; i < len; i++){
+            traverseNode(node.childNodes[i], fun)
+        }
+    }
     var fragmentRE = /^\s*<(\w+|!)[^>]*>/,
         singleTagRE = /^<(\w+)\s*\/?>(?:<\/\1>|)$/,
         tagExpanderRE = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/ig,
@@ -142,7 +151,7 @@ operatAttr;
             'td': tableRow, 'th': tableRow,
             '*': document.createElement('div')
         };
-        $.fragment = function(html, name, properties) {
+        fragment = function(html, name, properties) {
             var dom, nodes, container
 
             if (singleTagRE.test(html)) {
@@ -170,50 +179,52 @@ operatAttr;
             return dom
         }; 
     $.each([ 'after', 'prepend', 'before', 'append' ], function(operatorIndex, operator){
-        var inside = operatorIndex % 2 //=> prepend, append
+        var inside = operatorIndex % 2; //=> prepend, append
         $.fn[operator] = function(){
-            var argType, nodes = $.each(arguments, function(arg) {
+            var argType, nodes =[],
+            parent, copyByClone = this.length > 1;
+            $.each(arguments, function(_, arg) {
                 var arr = [],
                 argType = $.type(arg);
                 if (argType == "array") {
                     arg.forEach(function(el) {
                         if (el.nodeType !== undefined) return arr.push(el)
                             else
-                                arr = arr.concat($.fragment(el))
+                                arr = arr.concat(fragment(el))
                         })
                     return arr
                 }
-                return argType == "object" || arg == null ?
-                arg : $.fragment(arg)
-            }),
-            parent, copyByClone = this.length > 1
-            if (nodes.length < 1) return this
+                $.extend(nodes,  argType == "object" || arg == null ?
+                arg : fragment(arg));
+            });
+            if (nodes.length < 1) {
+                return this
+            }
+            return this.each(function(_, target){
+                parent = inside ? target : target.parentNode
+                // convert all methods to a "before" operation
+                target = operatorIndex == 0 ? target.nextSibling :
+                operatorIndex == 1 ? target.firstChild :
+                    operatorIndex == 2 ? target :
+                    null;
+                var parentInDocument = $.contains(document.documentElement, parent);
+                nodes.forEach(function(node){
+                    if (copyByClone){
+                        node = node.cloneNode(true)
+                    }else if (!parent){
+                        return $(node).remove()
+                    }
+                    parent.insertBefore(node, target);
 
-                return this.each(function(_, target){
-                    parent = inside ? target : target.parentNode
-
-        // convert all methods to a "before" operation
-        target = operatorIndex == 0 ? target.nextSibling :
-        operatorIndex == 1 ? target.firstChild :
-        operatorIndex == 2 ? target :
-        null
-
-        var parentInDocument = $.contains(document.documentElement, parent);
-        nodes.forEach(function(node){
-            if (copyByClone) node = node.cloneNode(true)
-                else if (!parent) return $(node).remove()
-
-                    return;
-                parent.insertBefore(node, target)
-                if (parentInDocument) traverseNode(node, function(el){
-                    if (el.nodeName != null && el.nodeName.toUpperCase() === 'SCRIPT' &&
-                        (!el.type || el.type === 'text/javascript') && !el.src){
-                        var target = el.ownerDocument ? el.ownerDocument.defaultView : window
-                    target['eval'].call(target, el.innerHTML)
-                }
+                    if (parentInDocument) traverseNode(node, function(el){
+                        if (el.nodeName != null && el.nodeName.toUpperCase() === 'SCRIPT' &&
+                            (!el.type || el.type === 'text/javascript') && !el.src){
+                            var target = el.ownerDocument ? el.ownerDocument.defaultView : window
+                                target['eval'].call(target, el.innerHTML)
+                    }
+                })
             })
             })
-        })
         }
 
         // after    => insertAfter

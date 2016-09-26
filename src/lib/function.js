@@ -60,16 +60,16 @@
                 }, 1000);
             })(N);
         },
-        contains: function(){
-            document.documentElement.contains ?
-            function(parent, node) {
+        contains: function(parent, node){
+            if (document.documentElement.contains){
                 return parent !== node && parent.contains(node)
-            } :
-            function(parent, node) {
-                while (node && (node = node.parentNode))
-                    if (node === parent) return true
-                        return false
+            }
+            if(node && (node = node.parentNode)){
+                if (node === parent) {
+                    return true
                 }
+            }
+            return false
         }
         
     })
