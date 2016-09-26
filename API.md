@@ -28,6 +28,13 @@ mui.jq API
 - css
 - attr
 - removeAttr
+### Dom操作 ###
+- prepend
+- append
+- before
+- after
+
+(ps:目前不支持mui对象)
 
 ### 其他 ###
 
