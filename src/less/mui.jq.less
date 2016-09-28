@@ -1,3 +1,7 @@
+.animation(@args:~"") {
+	-webkit-animation: @args;
+	animation: @args;
+}
 .ktoast{
 	&-container{
 		position: fixed;
@@ -106,4 +110,120 @@
         box-shadow: -16px 0px 0px 0px rgba(255,255,255,0.2), 
                     16px 0px 0px 0px rgba(255,255,255,1);
     }
+}
+
+[data-kimage]{
+	position: relative;
+	background-size: cover;
+	&:not([class*="img-"]){
+		.animation(~"fadein 800ms 1");
+	}
+
+	&.small{
+		&.img{
+			@_loadSize: 50px;
+			&-loading:before,
+			&-loading:after,
+			&-err:before{
+				width: @_loadSize;
+				margin-left: -@_loadSize /2;
+			}
+			&-loading{
+				&:before{
+					font-size: @_loadSize;
+					line-height: @_loadSize/2;
+					margin-top: -@_loadSize /3;
+				}
+				&:after{
+					height: @_loadSize/2;
+					font-size: 10px;
+					margin-top: 2px;
+					line-height: 20px;
+				}
+			}
+			&-err:before{
+				margin-top: -@_loadSize/2;
+				height: @_loadSize;
+				font-size: @_loadSize;
+				line-height: @_loadSize;
+			}
+		}
+	}
+	&.smaller{
+		&.img{
+			@_loadSize: 30px;
+			&-loading:before,
+			&-err:before{
+				width: @_loadSize;
+				height: @_loadSize;
+				margin-left: -@_loadSize /2;
+				margin-top: -@_loadSize/2;
+				font-size: @_loadSize;
+				line-height: @_loadSize;
+			}
+			&-loading{
+				&:after{
+					display: none;
+				}
+			}
+		}
+	}
+	&.img{
+		@_loadSize: 70px;
+		&-loading:before,
+		&-loading:after,
+		&-err:before{
+			display: inline-block;
+			color:#c5c5c5;
+			width: @_loadSize;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-left: -@_loadSize /2;
+			font-size: @_loadSize;
+			text-align: center;
+		}
+		&-loading{
+			&:before{
+				content: "Loading";
+				line-height: @_loadSize/2;
+				margin-top: -@_loadSize /3;
+			}
+			&:after{
+				color: #aaa;
+				font-size: 12px;
+				height: @_loadSize/2;
+				margin-top: 10px;
+				line-height: 20px;
+				content: "图像加载中";
+			}	
+		}
+		&-err{
+			&:before{
+				content: "图像加载失败";
+				line-height: @_loadSize;
+				color:#c5c5c5;
+				position: absolute;
+				margin-top: -@_loadSize/2;
+				margin-left: -@_loadSize /2;
+				text-align: center;
+			}
+		}
+	}
+}
+@keyframes fadein{
+	0% {
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+@-webkit-keyframes fadein{
+	0% {
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
 }

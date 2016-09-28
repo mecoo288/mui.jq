@@ -97,3 +97,97 @@
     box-shadow: -16px 0px 0px 0px rgba(255, 255, 255, 0.2), 16px 0px 0px 0px #ffffff;
   }
 }
+[data-kimage] {
+  position: relative;
+  background-size: cover;
+}
+[data-kimage]:not([class*="img-"]) {
+  -webkit-animation: fadein 800ms 1;
+  animation: fadein 800ms 1;
+}
+[data-kimage].small.img-loading:before,
+[data-kimage].small.img-loading:after,
+[data-kimage].small.img-err:before {
+  width: 50px;
+  margin-left: -25px;
+}
+[data-kimage].small.img-loading:before {
+  font-size: 50px;
+  line-height: 25px;
+  margin-top: -16.66666667px;
+}
+[data-kimage].small.img-loading:after {
+  height: 25px;
+  font-size: 10px;
+  margin-top: 2px;
+  line-height: 20px;
+}
+[data-kimage].small.img-err:before {
+  margin-top: -25px;
+  height: 50px;
+  font-size: 50px;
+  line-height: 50px;
+}
+[data-kimage].smaller.img-loading:before,
+[data-kimage].smaller.img-err:before {
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
+  font-size: 30px;
+  line-height: 30px;
+}
+[data-kimage].smaller.img-loading:after {
+  display: none;
+}
+[data-kimage].img-loading:before,
+[data-kimage].img-loading:after,
+[data-kimage].img-err:before {
+  display: inline-block;
+  color: #c5c5c5;
+  width: 70px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -35px;
+  font-size: 70px;
+  text-align: center;
+}
+[data-kimage].img-loading:before {
+  content: "Loading";
+  line-height: 35px;
+  margin-top: -23.33333333px;
+}
+[data-kimage].img-loading:after {
+  color: #aaa;
+  font-size: 12px;
+  height: 35px;
+  margin-top: 10px;
+  line-height: 20px;
+  content: "图像加载中";
+}
+[data-kimage].img-err:before {
+  content: "图像加载失败";
+  line-height: 70px;
+  color: #c5c5c5;
+  position: absolute;
+  margin-top: -35px;
+  margin-left: -35px;
+  text-align: center;
+}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -9,12 +9,7 @@
 		.img{
 			background-size: cover;
 			background-repeat: no-repeat;
-			position: absolute;
-			background-color: #c00;
-			width: 100px;
-			height: 100px;
-			left: 10%;
-			top: 20%;
+			height: 400px;
 		/* 	animation-name: runin;
 			animation-timing-function:  cubic-bezier(0.5,-0.5,0.5,1.5);
 			animation-direction: alternate;
@@ -24,14 +19,6 @@
 			/* animation-fill-mode: backwards; */
 			/* animation-fill-mode: both; */
 		}
-		@keyframes runin{
-			0%{
-				background-color: #0c0 
-			}
-			100%{
-				background-color: #00c 
-			}
-		}
 	</style>
 </head>
 <body>
@@ -40,14 +27,14 @@
 	<img class="img"  src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF.jpg" alt="">
 	<img class="img"  src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF11.jpg" alt="">
 	<img class="img" src="http://image.tianjimedia.com/uploadImages/2011/286/5VV6M152M8PF1133.jpg" alt=""> -->
-	<!-- <div class="img" id="img" style="background-color:#c00"></div>
-	<ul>
+	<div class="img" data-kimage="http://b.hiphotos.baidu.com/image/h%3D200/sign=b54162e5c4bf6c81e8372be88c3fb1d7/d50735fae6cd7b89b792bc0e072442a7d8330e44.jpg"></div>
+	<!-- <ul>
 		<li>1111</li>
 		<li>2222</li>
 		<li>3333</li>
 		<li class="aa"><b>aaa</b><span id=ccc>cccccc</span></li>
-	</ul> -->
-	<div id="div">11111 id:div</div>
+	</ul>
+	<div id="div">11111 id:div</div> -->
 	<script src="../build/lib/mui.jq.js"></script>
 	<script>
 		// document.getElementById("img").addEventListener("click", function(){
@@ -57,8 +44,26 @@
 		// 	console.log(222)
 		// })
 		mui(function($){
-			$("#div").after("<hr><div>222222</div><p>4444444</p>")
-			// $("#div").remove();
+			$.extend($.fn, {
+				loadImg: function(){
+					this.kfetch({
+						before: function(){
+							var $this = $(this),
+								w =  $this.width(),
+								h =  $this.height();
+							$(this).addClass(w<60 || h<60 ? "img-loading smaller" : ( w < 110 || h < 110 ? "img-loading small" : "img-loading"  ));
+						},
+						success: function(){
+							$(this).removeClass("img-loading")
+							.css("background-image", "url("+$(this).attr("data-kimage")+")")
+						},
+						error: function(){
+							$(this).removeClass("img-loading").addClass("img-err");
+						}
+					})
+				}
+			});
+			$("[data-kimage]").loadImg();
 		})
 	</script>
 </body>

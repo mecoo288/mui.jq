@@ -69,7 +69,7 @@
                 error: $.noop,
                 complete: $.noop
             }, options);
-
+            var involidName = "data-kimg-over";
             list = objects({
                 list: opts.object, 
                 before: opts.before
@@ -92,15 +92,19 @@
                 },40);
 
             $.each(list, function(ind, obj){
+                var imgObj = $(obj.object);
+                if(imgObj.attr(involidName)) return;
                 var img = document.createElement("img");
                     img.src = obj.src;
                 img.onload = function(){
                     finishList.push(obj);
                     opts.success.call(obj.object, obj);
+                    imgObj.attr(involidName, 1)
                 };
                 img.onerror = function(){
                     failList.push(obj);
                     opts.error.call(obj.object, obj);
+                    imgObj.attr(involidName, 1)
                 };
             });
         }
