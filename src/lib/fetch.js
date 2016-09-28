@@ -10,6 +10,7 @@
      * @param  {[string|array]} obj [对象为字符串、标签、数组]
      * @return {[array]}     [返回数组]
      */
+    var involidName = "data-kimg-over";
     var o = function(obj){
             return $.isArray(obj)
                 ? [].concat(obj)
@@ -55,8 +56,10 @@
                         ),
                 src: src
             };
-            data.before.call(_o.object, _o);
-            res.push(_o)
+            if(!$(_o.object).attr(involidName)){
+                data.before.call(_o.object, _o);
+                res.push(_o)
+            }
         });
         return !$.isEmptyObject(res) && res;
     };
@@ -68,8 +71,7 @@
                 success: $.noop,
                 error: $.noop,
                 complete: $.noop
-            }, options);
-            var involidName = "data-kimg-over";
+            }, options),
             list = objects({
                 list: opts.object, 
                 before: opts.before
@@ -92,9 +94,8 @@
                 },40);
 
             $.each(list, function(ind, obj){
-                var imgObj = $(obj.object);
-                if(imgObj.attr(involidName)) return;
-                var img = document.createElement("img");
+                var imgObj = $(obj.object),
+                    img = document.createElement("img");
                     img.src = obj.src;
                 img.onload = function(){
                     finishList.push(obj);
