@@ -46,15 +46,15 @@
             return ret;
         },
         timer:function(N,endFn, timeFn){
-            endFn = endFn || $.noop();
-            timeFn = timeFn || $.noop();
+            endFn = endFn || $.noop;
+            timeFn = timeFn || $.noop;
             (function(N){
                 var args = arguments;
                 if(N === 0){
                     endFn();
                     return;
                 }
-                    timeFn(N)
+                timeFn(N);
                 setTimeout(function(){
                     args.callee(--N);
                 }, 1000);
