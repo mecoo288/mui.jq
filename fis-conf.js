@@ -9,7 +9,10 @@ fis.match('*.less',{
 	parser:fis.plugin("less2"),
 	rExt:'css',
 	packTo: 'css/mui.jq.css'
-})
+});
+fis.match("mui.min.css",{
+	release:false
+});
 fis.match("**",{
 	deploy: [
 	    fis.plugin('skip-packed'),
